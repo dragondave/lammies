@@ -4,7 +4,7 @@ from jinja2 import Environment, FileSystemLoader
 templates_dir = "templates"
 env = Environment(loader=FileSystemLoader(templates_dir))
 lammy_template = env.get_template('one_lammy.html')
-page_template = env.get_template('page.html')
+doc_template = env.get_template('doc.html')
 
 class Config:
     def __init__(self, printrun):
@@ -16,12 +16,12 @@ class Config:
 
 config=Config("micro")
 
-class Page:
+class Doc:
     def __init__(self):
         self.lammies = []
 
     def render(self):
-        return page_template.render(lammies=self.lammies, printrun=config.printrun)
+        return doc_template.render(lammies=self.lammies, printrun=config.printrun)
 
     def from_csv(self, filename):
         with open(filename, "r") as csvfile:
@@ -67,6 +67,6 @@ class Lammy:
         return lammy_template.render(**self.lammydict)
 
 
-page = Page().from_csv("data/bigsheet.csv")
+doc = Doc().from_csv("data/bigsheet.csv")
 with open("output.html", "wb") as f:
-    f.write(page.render().encode('utf-8'))
+    f.write(doc.render().encode('utf-8'))
