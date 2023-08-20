@@ -9,6 +9,10 @@ page_template = env.get_template('page.html')
 class Config:
     def __init__(self, printrun):
         self.printrun = printrun
+        if printrun == "norm":
+            self.restructure = 8
+        else:
+            self.restructure = None
 
 config=Config("micro")
 
