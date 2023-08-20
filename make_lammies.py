@@ -10,14 +10,14 @@ class Config:
     def __init__(self, printrun):
         self.printrun = printrun
 
-config=Config("norm")
+config=Config("micro")
 
 class Page:
     def __init__(self):
         self.lammies = []
 
     def render(self):
-        return page_template.render(lammies=self.lammies)
+        return page_template.render(lammies=self.lammies, printrun=config.printrun)
 
     def from_csv(self, filename):
         with open(filename, "r") as csvfile:
