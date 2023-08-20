@@ -6,6 +6,11 @@ env = Environment(loader=FileSystemLoader(templates_dir))
 lammy_template = env.get_template('one_lammy.html')
 page_template = env.get_template('page.html')
 
+class Config:
+    printrun = "norm"
+
+config=Config()
+
 class Page:
     def __init__(self):
         self.lammies = []
@@ -21,7 +26,7 @@ class Page:
                     # this is a hack
                     if value == "None":
                         row[key] = None
-                if row['ref']:
+                if row['ref'] and row['printrun'] == config.printrun:
                     for i in range(0, int(row['printcount'])):
                         self.lammies.append(Lammy(row))
                     print(row)
@@ -39,6 +44,7 @@ class Lammy:
             'mechanical': lammydict.get("mechanical", None),
             'religious': lammydict.get("religious", None),
             'relicon': lammydict.get("relicon", None),
+            'printrun': lammydict.get("printrun", None),
         }
 
     def __repr__(self):
