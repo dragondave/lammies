@@ -11,11 +11,15 @@
                 margin: 1mm;
             }
 
+            .pagegap {
+                height: 1mm;
+            }
+
             .halflammy {
                 width: 88.6mm;
                 height: 63.5mm;
                 font-family: "Crimson Pro", serif;
-                outline: .02cm solid black;
+                outline: 0.5mm solid black;
                 box-sizing: border-box;         /* Opera/IE 8+ */
                 /*margin: 0.1cm 0 0.5cm 0;*/
                 
@@ -24,7 +28,6 @@
             .front {
 
                 width: 100%;
-                outline: 0.01cm solid black;
                 float: left;
                 height: 100%;
                 position: relative;
@@ -37,7 +40,6 @@
 
             .back {
                 width: 100%;
-                outline: 0.01cm solid black;
                 float: right;
                 height: 100%;
                 position: relative;
@@ -115,7 +117,7 @@
             }
 
             .tyr:before {
-                background: center / contain no-repeat url("images/fire.png");
+                /* background: center / contain no-repeat url("images/fire.png"); */
                 background-size: 60%;
                 content: "";
                 position: absolute;
@@ -123,15 +125,14 @@
                 right: 0px;
                 bottom: 0px;
                 left: 0px;
-                /* opacity: 0.25;*/
-                border-style: solid;
+                /* border-style: solid; */
                 z-index: -1;
                 
                 /* magic from https://www.pvgr.eu/en/article/border-image-css-and-svg.html */
-                border-width: 37px;
+                /* border-width: 37px;
                 border-image-source: url("border.svg");
                 border-image-slice: 37;
-                border-image-repeat: round stretch;
+                border-image-repeat: round stretch; */
             }
 
 
@@ -139,6 +140,8 @@
     </head>
     <body>
         {% for spread in spreads %}
+        <div class="pagegap"></div>
+                
         <div class="grid">
             {% for lammy_row in spread.front | batch(4, '&nbsp;') %}
                 <div class="col">
@@ -149,6 +152,8 @@
             {% endfor %}
         </div>
 
+        <div class="pagegap"></div>
+        
         <div class="grid">
             {% for lammy_row in spread.back | batch(4, '&nbsp;') %}
                 <div class="col">

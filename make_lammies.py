@@ -50,7 +50,7 @@ class Doc:
         # TODO: fix if not full set of eight.
         # TODO: handle non-8 case.
         assert items_per_page == 8
-        back = [1,0,3,2,5,4,7,6]
+        back = [4,5,6,7,0,1,2,3]
         spreads = []
         
         for chunk in funcy.chunks(items_per_page, padded_lammies):
