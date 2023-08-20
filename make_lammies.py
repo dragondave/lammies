@@ -1,3 +1,4 @@
+import funcy
 import csv
 from jinja2 import Environment, FileSystemLoader
 
@@ -5,6 +6,12 @@ templates_dir = "templates"
 env = Environment(loader=FileSystemLoader(templates_dir))
 lammy_template = env.get_template('one_lammy.html')
 doc_template = env.get_template('doc.html')
+spreads_template = env.get_template('spreads.html')
+front_template = env.get_template('one_lammy_front.html')
+back_template = env.get_template('one_lammy_back.html')
+
+class Spread:
+    pass
 
 class Config:
     def __init__(self, printrun):
@@ -14,7 +21,7 @@ class Config:
         else:
             self.restructure = None
 
-config=Config("micro")
+config=Config("norm")
 
 class Doc:
     def __init__(self):
@@ -37,36 +44,56 @@ class Doc:
                     print(row)
         return self
     
-    def restructure(self, items=8):
-        if items == 8:
-            front = [1,2,3,4,5,6,7,8]
-            back = [2,1,4,3,6,5,8,7]
+    def render_spreads(self, items_per_page=8):
+        padded_lammies = list(self.lammies)
+        padded_lammies.append(padded_lammies[0])
+        # TODO: fix if not full set of eight.
+        # TODO: handle non-8 case.
+        assert items_per_page == 8
+        back = [1,0,3,2,5,4,7,6]
+        spreads = []
         
-        
-
-
-
+        for chunk in funcy.chunks(items_per_page, padded_lammies):
+            print (chunk)
+            front_page_order = chunk
+            back_page_order = [chunk[x] for x in back]
+            spread = Spread()
+            spread.front = front_page_order
+            spread.back = back_page_order
+            spreads.append(spread)
+        return spreads_template.render(spreads=spreads, printrun=config.printrun)
 
 class Lammy:
     def __init__(self, lammydict):
-        self.lammydict = {
-            'ref': lammydict['ref'],
-            'fronttext': lammydict['fronttext'],
-            'frontflavour': lammydict.get('frontflavour', None),
-            'roleplaying': lammydict.get("roleplaying", None),
-            'mechanical': lammydict.get("mechanical", None),
-            'religious': lammydict.get("religious", None),
-            'relicon': lammydict.get("relicon", None),
-            'printrun': lammydict.get("printrun", None),
-        }
+        if lammydict == None:
+            self.lammydict = {}
+        else:
+            self.lammydict = {
+                'ref': lammydict['ref'],
+                'fronttext': lammydict['fronttext'],
+                'frontflavour': lammydict.get('frontflavour', None),
+                'roleplaying': lammydict.get("roleplaying", None),
+                'mechanical': lammydict.get("mechanical", None),
+                'religious': lammydict.get("religious", None),
+                'relicon': lammydict.get("relicon", None),
+                'printrun': lammydict.get("printrun", None),
+            }   
 
     def __repr__(self):
         return f"[{self.lammydict['ref']}: {self.lammydict['fronttext']}]"
 
     def render(self):
         return lammy_template.render(**self.lammydict)
+    
+    def front_render(self):
+        return front_template.render(**self.lammydict)
+    
+    def back_render(self):
+        return back_template.render(**self.lammydict)
 
 
 doc = Doc().from_csv("data/bigsheet.csv")
 with open("output.html", "wb") as f:
     f.write(doc.render().encode('utf-8'))
+with open("output_spread.html", "wb") as f:
+    f.write(doc.render_spreads().encode('utf-8'))

@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">            
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster+Two">            
+        
+        <style>
+            .grid {
+                page-break-after: always;
+                display: flex;
+                justify-content: center;
+                margin: 1mm;
+            }
+
+            .halflammy {
+                width: 88.6mm;
+                height: 63.5mm;
+                font-family: "Crimson Pro", serif;
+                outline: .02cm solid black;
+                box-sizing: border-box;         /* Opera/IE 8+ */
+                /*margin: 0.1cm 0 0.5cm 0;*/
+                
+            }
+ 
+            .front {
+
+                width: 100%;
+                outline: 0.01cm solid black;
+                float: left;
+                height: 100%;
+                position: relative;
+                
+                box-sizing: border-box;         /* Opera/IE 8+ */
+
+
+                
+            }
+
+            .back {
+                width: 100%;
+                outline: 0.01cm solid black;
+                float: right;
+                height: 100%;
+                position: relative;
+                padding: 3mm;
+                
+                box-sizing: border-box;         /* Opera/IE 8+ */
+            }
+
+            .title {
+                margin: 5mm;
+                font-size: 20px;
+                text-align: center;
+                
+            }
+
+            .fronttext {
+                text-align: center;
+                width: 100%;
+                font-size: 36px;
+                position: absolute;
+                vertical-align: middle;
+                {% if printrun == "norm" %}
+                top: 40%;
+                transformY: -50%;
+                {% else %}
+                top: 25%;
+                transformY: -80%;
+                {% endif %}
+                text-wrap: balance;
+            }
+
+            .frontflavour {
+                font-size: 16px;
+                margin: 8px;
+            }
+           
+            .lammyid {
+                position:absolute;
+                bottom:0;
+                right:0;
+                {% if printrun=="norm" %}
+                padding: 5mm;
+                {% else %}
+                padding: 3mm 3.5mm;
+                {% endif %}
+                
+            }
+
+            .religious {
+                position:absolute;
+                bottom:0;
+                right:0;
+                font-style: italic;
+                padding: 5mm;
+            }
+
+            .relicon {
+                position:absolute;
+                bottom: 0;
+                padding: 5mm;
+                height: 20mm;
+                width: 20mm;
+                display:block;
+                padding-left:35mm;
+            }
+
+            .roleplay {
+                font-style: italic;
+                padding: 5mm;
+                padding-bottom: 0mm;   
+            }
+
+            .mechanical {
+                padding: 5mm;
+            }
+
+            .tyr:before {
+                background: center / contain no-repeat url("images/fire.png");
+                background-size: 60%;
+                content: "";
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
+                /* opacity: 0.25;*/
+                border-style: solid;
+                z-index: -1;
+                
+                /* magic from https://www.pvgr.eu/en/article/border-image-css-and-svg.html */
+                border-width: 37px;
+                border-image-source: url("border.svg");
+                border-image-slice: 37;
+                border-image-repeat: round stretch;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        {% for spread in spreads %}
+        <div class="grid">
+            {% for lammy_row in spread.front | batch(4, '&nbsp;') %}
+                <div class="col">
+                {% for lammy in lammy_row %}
+                    {{lammy.front_render()}}
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="grid">
+            {% for lammy_row in spread.back | batch(4, '&nbsp;') %}
+                <div class="col">
+                {% for lammy in lammy_row %}
+                    {{lammy.back_render()}}
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    
+            </div>
+    </body>
+</html>

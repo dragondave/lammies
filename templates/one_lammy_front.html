@@ -1,0 +1,18 @@
+<div class="halflammy">
+    <div class="front tyr">
+        {% if printrun == "micro" %}
+        <div class='title'>Bastion of the Eternal Fire</div>
+        {% else %}
+        <div class='title'>🔥 Bastion of the Eternal Fire 🔥</div>
+        {% endif %}
+        <div class='fronttext'>{{fronttext}} 
+            <div class="frontflavour">{{frontflavour}}</div>
+            {% if printrun == "micro" %}
+            <div class="frontflavour">{{mechanical}}</div>
+            {% endif %}
+        </div>
+        <div class="lammyid">{{ref}}</div>
+        
+        {% if relicon %}<img src="images/{{relicon}}.png" class="relicon">{% endif %}
+    </div>
+</div>
