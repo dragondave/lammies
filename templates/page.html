@@ -65,7 +65,7 @@
                 position:absolute;
                 bottom:0;
                 right:0;
-                padding: 3mm;
+                padding: 5mm;
             }
 
             .religious {
@@ -73,26 +73,41 @@
                 bottom:0;
                 right:0;
                 font-style: italic;
-                padding: 3mm;
+                padding: 5mm;
+            }
+
+            .relicon {
+                position:absolute;
+                bottom: 0;
+                padding: 5mm;
+                height: 20mm;
+                width: 20mm;
+                display:block;
+                padding-left:35mm;
             }
 
             .roleplay {
                 font-style: italic;
-                padding: 0mm 0 3mm 0;
-                
+                padding: 5mm;
+                padding-bottom: 0mm;   
+            }
+
+            .mechanical {
+                padding: 5mm;
             }
 
             .tyr:before {
-                background: center / contain no-repeat url("images/pig.png");
-                background-size: 80%;
+                background: center / contain no-repeat url("images/fire.png");
+                background-size: 60%;
                 content: "";
                 position: absolute;
                 top: 0px;
                 right: 0px;
                 bottom: 0px;
                 left: 0px;
-                opacity: 0.25;
+                /* opacity: 0.25;*/
                 border-style: solid;
+                z-index: -1;
                 
                 /* magic from https://www.pvgr.eu/en/article/border-image-css-and-svg.html */
                 border-width: 37px;

@@ -38,6 +38,7 @@ class Lammy:
             'roleplaying': lammydict.get("roleplaying", None),
             'mechanical': lammydict.get("mechanical", None),
             'religious': lammydict.get("religious", None),
+            'relicon': lammydict.get("relicon", None),
         }
 
     def __repr__(self):
