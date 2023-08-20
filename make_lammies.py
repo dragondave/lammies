@@ -7,9 +7,10 @@ lammy_template = env.get_template('one_lammy.html')
 page_template = env.get_template('page.html')
 
 class Config:
-    printrun = "norm"
+    def __init__(self, printrun):
+        self.printrun = printrun
 
-config=Config()
+config=Config("norm")
 
 class Page:
     def __init__(self):
@@ -31,6 +32,14 @@ class Page:
                         self.lammies.append(Lammy(row))
                     print(row)
         return self
+    
+    def restructure(self, items=8):
+        if items == 8:
+            front = [1,2,3,4,5,6,7,8]
+            back = [2,1,4,3,6,5,8,7]
+        
+        
+
 
 
 

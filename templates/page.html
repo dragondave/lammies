@@ -5,18 +5,29 @@
         
         <style>
             .lammy {
+                {% if printrun=="norm" %}
                 width: 177.8mm;
                 height: 63.5mm;
+                {% else %}
+                width: 90mm;
+                height: 63.5mm;
+                float: left;
+                {% endif %}
                 break-inside: avoid;
                 font-family: "Crimson Pro", serif;
                 outline: .02cm solid black;
                 box-sizing: border-box;         /* Opera/IE 8+ */
                 margin: 0.1cm 0 0.5cm 0;
+                
             }
  
             .front {
                 
+                {% if printrun=="norm" %}
                 width: 50%;
+                {% else %}
+                width: 100%;
+                {% endif %}
                 outline: 0.01cm solid black;
                 float: left;
                 height: 100%;
@@ -59,6 +70,7 @@
 
             .frontflavour {
                 font-size: 16px;
+                margin: 8px;
             }
            
             .lammyid {

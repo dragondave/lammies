@@ -3,15 +3,20 @@
         <div class='title'>🔥 Bastion of the Eternal Fire 🔥</div>
         <div class='fronttext'>{{fronttext}} 
             <div class="frontflavour">{{frontflavour}}</div>
+            {% if printrun == "micro" %}
+            <div class="frontflavour">{{mechanical}}</div>
+            {% endif %}
         </div>
         <div class="lammyid">{{ref}}</div>
         
         {% if relicon %}<img src="images/{{relicon}}.png" class="relicon">{% endif %}
     </div> 
 
+    {% if printrun != "micro" %}
     <div class="back tyr">
         {% if roleplaying %}<div class="roleplay">{{roleplaying}}</div>{% endif %}
         {% if mechanical %}<div class="mechanical">{{mechanical}}</div>{% endif %}
         {% if religious %}<div class="religious">{{religious}}</div>{% endif %}
     </div>
+    {% endif %}
 </div>
