@@ -9,6 +9,20 @@ doc_template = env.get_template('doc.html')
 spreads_template = env.get_template('spreads.html')
 front_template = env.get_template('one_lammy_front.html')
 back_template = env.get_template('one_lammy_back.html')
+GAME = "🪦 Grave of the Eternal Fire 🪦"
+MICROGAME = "Grave of the Eternal Fire"
+
+def _clean_string(s):
+    bold = "CLEAVE FLAME IDENTIFY MUTE STAGGER VENOM WEAKEN COMMAND RESIST REFRESH WOUNDED HEAL"
+    replacements = {'""': '"', "\n": "<br>"}
+    for b in bold.split(' '):
+        replacements[b] = f"<b>{b}</b>"
+    if not s:
+        return s
+    for old, new in replacements.items():
+        s=s.replace(old, new)
+    return s
+
 
 class Spread:
     pass
@@ -19,7 +33,7 @@ class Config:
         if printrun == "norm":
             self.restructure = 8
         else:
-            self.restructure = 8 # should be None
+            self.restructure = None
 
 config=Config("norm")
 
@@ -47,13 +61,13 @@ class Doc:
     def render_spreads(self, items_per_page=8):
         padded_lammies = list(self.lammies)
         # there should be items-per-page - 1 placeholders
-        padded_lammies.append(padded_lammies[0])
-        padded_lammies.append(padded_lammies[0])
-        padded_lammies.append(padded_lammies[0])
-        padded_lammies.append(padded_lammies[0])
-        padded_lammies.append(padded_lammies[0])
-        padded_lammies.append(padded_lammies[0])
-        padded_lammies.append(padded_lammies[0])
+        padded_lammies.append(PLACEHOLDER_LAMMY)
+        padded_lammies.append(PLACEHOLDER_LAMMY)
+        padded_lammies.append(PLACEHOLDER_LAMMY)
+        padded_lammies.append(PLACEHOLDER_LAMMY)
+        padded_lammies.append(PLACEHOLDER_LAMMY)
+        padded_lammies.append(PLACEHOLDER_LAMMY)
+        padded_lammies.append(PLACEHOLDER_LAMMY)
         pages = len(padded_lammies) // items_per_page
         padded_lammies = padded_lammies[:pages*items_per_page]
         # TODO: fix if not full set of eight.
@@ -73,6 +87,8 @@ class Doc:
         return spreads_template.render(spreads=spreads, printrun=config.printrun)
 
 class Lammy:
+
+
     def __init__(self, lammydict):
         if lammydict == None:
             self.lammydict = {}
@@ -80,12 +96,14 @@ class Lammy:
             self.lammydict = {
                 'ref': lammydict['ref'],
                 'fronttext': lammydict['fronttext'],
-                'frontflavour': lammydict.get('frontflavour', None),
-                'roleplaying': lammydict.get("roleplaying", None),
-                'mechanical': lammydict.get("mechanical", None),
-                'religious': lammydict.get("religious", None),
-                'relicon': lammydict.get("relicon", None),
-                'printrun': lammydict.get("printrun", None),
+                'frontflavour': _clean_string(lammydict.get('frontflavour', None)),
+                'roleplaying':  _clean_string(lammydict.get("roleplaying", None)),
+                'mechanical': _clean_string(lammydict.get("mechanical", None)),
+                'religious': _clean_string(lammydict.get("religious", None)),
+                'relicon': _clean_string(lammydict.get("relicon", None)),
+                'printrun': _clean_string(lammydict.get("printrun", None)),
+                'game': GAME,
+                'microgame': MICROGAME,
             }
 
     def __repr__(self):
@@ -100,11 +118,16 @@ class Lammy:
     def back_render(self):
         return back_template.render(**self.lammydict)
 
+PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': ''})
+
+# config=Config("micro")
 
 for csv_name in ["common_resources"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
     with open(f"output/{csv_name}.html", "wb") as f:
         f.write(doc.render().encode('utf-8'))
+
+# config=Config("norm")
 
 for csv_name in ["flange", "foxx_talismans", "talismans", "marks"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")

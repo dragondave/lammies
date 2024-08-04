@@ -1,12 +1,14 @@
 <div class='lammy'>
     <div class="front tyr">
         {% if printrun == "micro" %}
-        <div class='title'>Bastion of the Eternal Fire</div>
+        <div class='title'>{{microgame}}</div>
         {% else %}
-        <div class='title'>🔥 Bastion of the Eternal Fire 🔥</div>
+        <div class='title'>{{game}}</div>
         {% endif %}
         <div class='fronttext'>{{fronttext}}
+            {% if frontflavour %}
             <div class="frontflavour">{{frontflavour}}</div>
+            {% endif %}
             {% if printrun == "micro" %}
             <div class="frontflavour">{{mechanical}}</div>
             {% endif %}
