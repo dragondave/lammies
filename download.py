@@ -5,14 +5,14 @@ import requests_cache
 # requests_cache.install_cache()
 
 tabs = [
-        {'gid': 461547648, 'name': 'marks', 'printrun': 'large', 'print': 
+        {'gid': 461547648, 'name': 'marks', 'printrun': 'large', 'print':
             {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Front Text", "roleplaying": "Roleplaying Effect",
          "religious": "Religious Alignment"}
         },
-        {'gid': 657279460, 'name': 'flange', 'printrun': 'large', 'print': 
+        {'gid': 657279460, 'name': 'flange', 'printrun': 'large', 'print':
          {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Name", "frontflavour": "Front Text", "mechanical": "Back Text"}
          },
-        {'gid': 923420315, 'name': 'talismans', 'printrun': 'large', 'print': 
+        {'gid': 923420315, 'name': 'talismans', 'printrun': 'large', 'print':
          {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Name", "frontflavour": "Front Text", "mechanical": "Back Text"}
         },
         {'gid': 1592624607, 'name': 'foxx_talismans', 'printrun': 'large', 'print':

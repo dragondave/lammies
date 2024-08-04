@@ -43,7 +43,7 @@ class Doc:
                         self.lammies.append(Lammy(row))
                     print(row)
         return self
-    
+
     def render_spreads(self, items_per_page=8):
         padded_lammies = list(self.lammies)
         padded_lammies.append(padded_lammies[0])
@@ -52,7 +52,7 @@ class Doc:
         assert items_per_page == 8
         back = [4,5,6,7,0,1,2,3]
         spreads = []
-        
+
         for chunk in funcy.chunks(items_per_page, padded_lammies):
             print (chunk)
             front_page_order = chunk
@@ -77,17 +77,17 @@ class Lammy:
                 'religious': lammydict.get("religious", None),
                 'relicon': lammydict.get("relicon", None),
                 'printrun': lammydict.get("printrun", None),
-            }   
+            }
 
     def __repr__(self):
         return f"[{self.lammydict['ref']}: {self.lammydict['fronttext']}]"
 
     def render(self):
         return lammy_template.render(**self.lammydict)
-    
+
     def front_render(self):
         return front_template.render(**self.lammydict)
-    
+
     def back_render(self):
         return back_template.render(**self.lammydict)
 

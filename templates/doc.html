@@ -1,8 +1,8 @@
 <html>
     <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">            
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster+Two">            
-        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster+Two">
+
         <style>
             .lammy {
                 {% if printrun=="norm" %}
@@ -18,11 +18,11 @@
                 outline: .02cm solid black;
                 box-sizing: border-box;         /* Opera/IE 8+ */
                 /*margin: 0.1cm 0 0.5cm 0;*/
-                
+
             }
- 
+
             .front {
-                
+
                 {% if printrun=="norm" %}
                 width: 50%;
                 {% else %}
@@ -32,11 +32,11 @@
                 float: left;
                 height: 100%;
                 position: relative;
-                
+
                 box-sizing: border-box;         /* Opera/IE 8+ */
 
 
-                
+
             }
 
             .back {
@@ -46,7 +46,7 @@
                 height: 100%;
                 position: relative;
                 padding: 3mm;
-                
+
                 box-sizing: border-box;         /* Opera/IE 8+ */
             }
 
@@ -54,7 +54,7 @@
                 margin: 5mm;
                 font-size: 20px;
                 text-align: center;
-                
+
             }
 
             .fronttext {
@@ -77,7 +77,7 @@
                 font-size: 16px;
                 margin: 8px;
             }
-           
+
             .lammyid {
                 position:absolute;
                 bottom:0;
@@ -87,7 +87,7 @@
                 {% else %}
                 padding: 3mm 3.5mm;
                 {% endif %}
-                
+
             }
 
             .religious {
@@ -111,7 +111,7 @@
             .roleplay {
                 font-style: italic;
                 padding: 5mm;
-                padding-bottom: 0mm;   
+                padding-bottom: 0mm;
             }
 
             .mechanical {
@@ -130,7 +130,7 @@
                 /* opacity: 0.25;*/
                 border-style: solid;
                 z-index: -1;
-                
+
                 /* magic from https://www.pvgr.eu/en/article/border-image-css-and-svg.html */
                 border-width: 37px;
                 border-image-source: url("border.svg");
@@ -142,7 +142,7 @@
         </style>
     </head>
     <body>
-        {% for lammy in lammies %} 
+        {% for lammy in lammies %}
         {{lammy.render()}}
         {% endfor %}
     </body>
