@@ -19,7 +19,7 @@ class Config:
         if printrun == "norm":
             self.restructure = 8
         else:
-            self.restructure = None
+            self.restructure = 8 # should be None
 
 config=Config("norm")
 
@@ -46,7 +46,16 @@ class Doc:
 
     def render_spreads(self, items_per_page=8):
         padded_lammies = list(self.lammies)
+        # there should be items-per-page - 1 placeholders
         padded_lammies.append(padded_lammies[0])
+        padded_lammies.append(padded_lammies[0])
+        padded_lammies.append(padded_lammies[0])
+        padded_lammies.append(padded_lammies[0])
+        padded_lammies.append(padded_lammies[0])
+        padded_lammies.append(padded_lammies[0])
+        padded_lammies.append(padded_lammies[0])
+        pages = len(padded_lammies) // items_per_page
+        padded_lammies = padded_lammies[:pages*items_per_page]
         # TODO: fix if not full set of eight.
         # TODO: handle non-8 case.
         assert items_per_page == 8
@@ -92,12 +101,12 @@ class Lammy:
         return back_template.render(**self.lammydict)
 
 
-for csv_name in ["flange"]:
+for csv_name in ["common_resources"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
     with open(f"output/{csv_name}.html", "wb") as f:
         f.write(doc.render().encode('utf-8'))
 
-# for csv_name in ["common_resources"]:
-#     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
-#     with open(f"output/{csv_name}-spread.html", "wb") as f:
-#         f.write(doc.render().encode('utf-8'))
+for csv_name in ["flange", "foxx_talismans", "talismans", "marks"]:
+    doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
+    with open(f"output/{csv_name}-spread.html", "wb") as f:
+        f.write(doc.render_spreads().encode('utf-8'))

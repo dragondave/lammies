@@ -2,3 +2,4 @@ output.html
 output_spread.html
 /data/*
 *.sqlite
+/output/*
