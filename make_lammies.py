@@ -38,7 +38,7 @@ class Doc:
                     # this is a hack
                     if value == "None":
                         row[key] = None
-                if row['ref'] and row['printrun'] == config.printrun:
+                if row['ref']:
                     for i in range(0, int(row['printcount'])):
                         self.lammies.append(Lammy(row))
                     print(row)
@@ -92,8 +92,12 @@ class Lammy:
         return back_template.render(**self.lammydict)
 
 
-doc = Doc().from_csv("data/bigsheet.csv")
-with open("output.html", "wb") as f:
-    f.write(doc.render().encode('utf-8'))
-with open("output_spread.html", "wb") as f:
-    f.write(doc.render_spreads().encode('utf-8'))
+for csv_name in ["flange"]:
+    doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
+    with open(f"output/{csv_name}.html", "wb") as f:
+        f.write(doc.render().encode('utf-8'))
+
+# for csv_name in ["common_resources"]:
+#     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
+#     with open(f"output/{csv_name}-spread.html", "wb") as f:
+#         f.write(doc.render().encode('utf-8'))
