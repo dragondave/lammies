@@ -1,6 +1,7 @@
 import funcy
 import csv
 from jinja2 import Environment, FileSystemLoader
+from weasyprint import HTML
 
 templates_dir = "templates"
 env = Environment(loader=FileSystemLoader(templates_dir))
@@ -120,18 +121,30 @@ class Lammy:
         return back_template.render(**self.lammydict)
 
 
+def make_pdf(html):
+    """Generate a PDF file from a string of HTML."""
+    htmldoc = HTML(string=html)
+    return htmldoc.write_pdf()
+
+
 config=Config("micro")
 PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': '', 'printrun':config.printrun})
 
 for csv_name in ["common_resources"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
+    html = doc.render()
     with open(f"output/{csv_name}.html", "wb") as f:
-        f.write(doc.render().encode('utf-8'))
+        f.write(html.encode('utf-8'))
+    with open(f"output/{csv_name}.pdf", "wb") as f:
+        f.write(make_pdf(html))
 
 config=Config("norm")
 PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': '', 'printrun':config.printrun})
 
 for csv_name in ["flange", "foxx_talismans", "talismans", "marks"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
+    html = doc.render()
     with open(f"output/{csv_name}-spread.html", "wb") as f:
         f.write(doc.render_spreads().encode('utf-8'))
+    with open(f"output/{csv_name}.pdf", "wb") as f:
+        f.write(make_pdf(html))
