@@ -135,8 +135,8 @@ for csv_name in ["common_resources"]:
     html = doc.render()
     with open(f"output/{csv_name}.html", "wb") as f:
         f.write(html.encode('utf-8'))
-    with open(f"output/{csv_name}.pdf", "wb") as f:
-        f.write(make_pdf(html))
+    # with open(f"output/{csv_name}.pdf", "wb") as f:
+    #     f.write(make_pdf(html))
 
 config=Config("norm")
 PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': '', 'printrun':config.printrun})
@@ -144,7 +144,7 @@ PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': '', 'printrun':config.printru
 for csv_name in ["flange", "foxx_talismans", "talismans", "marks"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
     html = doc.render()
-    with open(f"output/{csv_name}-spread.html", "wb") as f:
+    with open(f"output/{csv_name}.html", "wb") as f:
         f.write(doc.render_spreads().encode('utf-8'))
-    with open(f"output/{csv_name}.pdf", "wb") as f:
-        f.write(make_pdf(html))
+    # with open(f"output/{csv_name}.pdf", "wb") as f:
+    #     f.write(make_pdf(html))
