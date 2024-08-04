@@ -19,7 +19,7 @@ tabs = [
          {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Name",  "frontflavour": "Front Text", "mechanical": "Back Text"}
         },
         {'gid': 1243514760, 'name': 'common_resources', 'printrun': 'micro', 'print':
-         {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Front Text", "mechanical": "Back Text"}
+         {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Front Text", "frontflavour": "Back Text"}
         },
         ]
 

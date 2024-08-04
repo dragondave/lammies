@@ -104,6 +104,7 @@ class Lammy:
                 'printrun': _clean_string(lammydict.get("printrun", None)),
                 'game': GAME,
                 'microgame': MICROGAME,
+                'printrun': config.printrun,
             }
 
     def __repr__(self):
@@ -118,16 +119,17 @@ class Lammy:
     def back_render(self):
         return back_template.render(**self.lammydict)
 
-PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': ''})
 
 config=Config("micro")
+PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': '', 'printrun':config.printrun})
 
 for csv_name in ["common_resources"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
-    with open(f"output/{csv_name}-spread.html", "wb") as f:
-        f.write(doc.render_spreads().encode('utf-8'))
+    with open(f"output/{csv_name}.html", "wb") as f:
+        f.write(doc.render().encode('utf-8'))
 
 config=Config("norm")
+PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': '', 'printrun':config.printrun})
 
 for csv_name in ["flange", "foxx_talismans", "talismans", "marks"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")

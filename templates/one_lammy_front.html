@@ -1,16 +1,13 @@
 <div class="halflammy">
     <div class="front tyr">
         {% if printrun == "micro" %}
-        <div class='title'>{{microgame}}</div>
+        <div class='title'>{{game}}</div>
         {% else %}
         <div class='title'>{{game}}</div>
         {% endif %}
         <div class='fronttext'>{{fronttext}}
             {% if frontflavour %}
             <div class="frontflavour">{{frontflavour}}</div>
-            {% endif %}
-            {% if printrun == "micro" %}
-            <div class="frontflavour">{{mechanical}}</div>
             {% endif %}
         </div>
         <div class="lammyid">{{ref}}</div>
