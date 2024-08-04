@@ -1,5 +1,7 @@
 <div class='lammy'>
     <div class="front tyr">
+
+        {% if relicon %}<img src="../images/{{relicon}}.png" class="relicon">{% endif %}
         {% if printrun == "micro" %}
         <div class='title'>{{microgame}}</div>
         {% else %}
@@ -15,7 +17,6 @@
         </div>
         <div class="lammyid">{{ref}}</div>
 
-        {% if relicon %}<img src="images/{{relicon}}.png" class="relicon">{% endif %}
     </div>
 
     {% if printrun != "micro" %}

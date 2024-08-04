@@ -13,7 +13,7 @@ GAME = "🪦 Grave of the Eternal Fire 🪦"
 MICROGAME = "Grave of the Eternal Fire"
 
 def _clean_string(s):
-    bold = "CLEAVE FLAME IDENTIFY MUTE STAGGER VENOM WEAKEN COMMAND RESIST REFRESH WOUNDED HEAL"
+    bold = "CLEAVE FLAME IDENTIFY MUTE STAGGER VENOM WEAKEN COMMAND RESIST REFRESH WOUNDED HEAL MASS DETECT IMPALE IMMUNE"
     replacements = {'""': '"', "\n": "<br>"}
     for b in bold.split(' '):
         replacements[b] = f"<b>{b}</b>"
@@ -100,7 +100,7 @@ class Lammy:
                 'roleplaying':  _clean_string(lammydict.get("roleplaying", None)),
                 'mechanical': _clean_string(lammydict.get("mechanical", None)),
                 'religious': _clean_string(lammydict.get("religious", None)),
-                'relicon': _clean_string(lammydict.get("relicon", None)),
+                'relicon': lammydict.get("relicon", None),
                 'printrun': _clean_string(lammydict.get("printrun", None)),
                 'game': GAME,
                 'microgame': MICROGAME,
@@ -120,14 +120,14 @@ class Lammy:
 
 PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': ''})
 
-# config=Config("micro")
+config=Config("micro")
 
 for csv_name in ["common_resources"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
-    with open(f"output/{csv_name}.html", "wb") as f:
-        f.write(doc.render().encode('utf-8'))
+    with open(f"output/{csv_name}-spread.html", "wb") as f:
+        f.write(doc.render_spreads().encode('utf-8'))
 
-# config=Config("norm")
+config=Config("norm")
 
 for csv_name in ["flange", "foxx_talismans", "talismans", "marks"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
