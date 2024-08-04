@@ -6,7 +6,8 @@ import requests_cache
 
 tabs = [
         {'gid': 461547648, 'name': 'marks', 'printrun': 'large', 'print':
-            {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Front Text", "roleplaying": "Roleplaying Effect",
+            {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Front Text", "frontflavour": "Roleplaying Effect",
+              "mechanical": "Mechanical Effect",
          "religious": "Religious Alignment"}
         },
         {'gid': 657279460, 'name': 'flange', 'printrun': 'large', 'print':
