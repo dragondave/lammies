@@ -41,7 +41,7 @@ config=Config("norm")
 
 def as_int(s):
     if not s:
-        return 0
+        return 1  # if not specified, print something
     else:
         return int(s)
 
