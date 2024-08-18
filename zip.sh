@@ -1,1 +1,1 @@
-zip -r output/lammies.zip output/*.html
+zip -r output/lammies.zip output/*.html output/lammies
