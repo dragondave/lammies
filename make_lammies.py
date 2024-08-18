@@ -15,7 +15,7 @@ MICROGAME = "Grave of the Eternal Fire"
 DUPLEX = False
 
 def _clean_string(s):
-    bold = "CLEAVE FLAME IDENTIFY MUTE STAGGER VENOM WEAKEN COMMAND RESIST REFRESH WOUNDED HEAL MASS DETECT IMPALE IMMUNE"
+    bold = "CLEAVE FLAME IDENTIFY MUTE STAGGER VENOM WEAKEN COMMAND RESIST REFRESH WOUNDED HEAL MASS DETECT IMPALE IMMUNE SACRIFICE SLAY"
     replacements = {'""': '"', "\n": "<br>", "[INSERT NAME HERE]": "<span class='feint'>[Insert Name Here]</span>"}
     for b in bold.split(' '):
         replacements[b] = f"<b>{b}</b>"
