@@ -147,7 +147,7 @@ for csv_name in ["common_resources"]:
 config=Config("norm")
 PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': '', 'printrun':config.printrun})
 
-for csv_name in ["flange", "foxx_talismans", "talismans", "marks"]:
+for csv_name in ["flange", "foxx_talismans", "talismans", "marks", "blessings"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
     html = doc.render()
     with open(f"output/{csv_name}.html", "wb") as f:

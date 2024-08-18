@@ -21,6 +21,8 @@ tabs = [
         {'gid': 1243514760, 'name': 'common_resources', 'printrun': 'micro', 'print':
          {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Front Text", "frontflavour": "Back Text"}
         },
+        {'gid': 268114328, 'name': 'blessings', 'printrun': 'large', 'print':
+        {"printcount": "Print Count", "ref": "ref", "fronttext": "Front Text", "frontflavour": "Lower Front Text", "mechanical": "Rear Text", "religious": "God", "relicon": "Religious Icon"}}
         ]
 
 # printcount,,ref,fronttext,frontflavour,roleplaying,mechanical,religious,relicon,printrun,,,,
