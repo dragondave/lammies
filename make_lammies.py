@@ -38,6 +38,12 @@ class Config:
 
 config=Config("norm")
 
+def as_int(s):
+    if not s:
+        return 0
+    else:
+        return int(s)
+
 class Doc:
     def __init__(self):
         self.lammies = []
@@ -54,7 +60,7 @@ class Doc:
                     if value == "None":
                         row[key] = None
                 if row['ref']:
-                    for i in range(0, int(row['printcount'])):
+                    for i in range(0, as_int(row['printcount'])):
                         self.lammies.append(Lammy(row))
                     print(row)
         return self
