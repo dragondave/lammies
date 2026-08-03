@@ -1,0 +1,1 @@
+you probably need to run `brew install weasyprint` as well as `poetry install`
