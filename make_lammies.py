@@ -10,12 +10,12 @@ doc_template = env.get_template('doc.html')
 spreads_template = env.get_template('spreads.html')
 front_template = env.get_template('one_lammy_front.html')
 back_template = env.get_template('one_lammy_back.html')
-GAME = "🪦 Grave of the Eternal Fire 🪦"
-MICROGAME = "Grave of the Eternal Fire"
+GAME = "Peace of the Eternal Fire"
+MICROGAME = "Peace of the Eternal Fire"
 DUPLEX = False
 
 def _clean_string(s):
-    bold = "CLEAVE FLAME IDENTIFY MUTE STAGGER VENOM WEAKEN COMMAND RESIST REFRESH WOUNDED HEAL MASS DETECT IMPALE IMMUNE SACRIFICE SLAY"
+    bold = "OBLIVION DRAIN GROUP COMRADE BLOOD CLEAVE FLAME IDENTIFY MUTE STAGGER VENOM WEAKEN COMMAND RESIST REFRESH WOUNDED HEAL MASS DETECT IMPALE IMMUNE SACRIFICE SLAY"
     replacements = {'""': '"', "\n": "<br>", "[INSERT NAME HERE]": "<span class='feint'>[Insert Name Here]</span>"}
     for b in bold.split(' '):
         replacements[b] = f"<b>{b}</b>"
@@ -148,7 +148,7 @@ for csv_name in ["common_resources"]:
 config=Config("norm")
 PLACEHOLDER_LAMMY = Lammy({'ref': '', 'fronttext': '', 'printrun':config.printrun})
 
-for csv_name in ["flange", "foxx_talismans", "talismans", "marks", "blessings"]:
+for csv_name in ["flange", "drugs", "marks", "blessings", "complicated_resources"]:
     doc = Doc().from_csv(f"data/{csv_name}-modified.csv")
     html = doc.render()
     if DUPLEX:

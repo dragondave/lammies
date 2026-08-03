@@ -12,17 +12,17 @@ tabs = [
         {'gid': 657279460, 'name': 'flange', 'printrun': 'large', 'print':
          {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Name", "frontflavour": "Front Text", "mechanical": "Back Text"}
          },
-        {'gid': 923420315, 'name': 'talismans', 'printrun': 'large', 'print':
-         {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Name", "frontflavour": "Front Text", "mechanical": "Back Text"}
-        },
-        {'gid': 1592624607, 'name': 'foxx_talismans', 'printrun': 'large', 'print':
-         {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Name",  "frontflavour": "Front Text", "mechanical": "Back Text"}
+        {'gid': 923420315, 'name': 'drugs', 'printrun': 'large', 'print':
+         {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Name", "mechanical": "Back Text"}
         },
         {'gid': 1243514760, 'name': 'common_resources', 'printrun': 'micro', 'print':
          {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Front Text", "frontflavour": "Back Text"}
         },
         {'gid': 268114328, 'name': 'blessings', 'printrun': 'large', 'print':
-        {"printcount": "Print Count", "ref": "ref", "fronttext": "Front Text", "frontflavour": "Lower Front Text", "mechanical": "Rear Text", "religious": "God", "relicon": "Religious Icon"}}
+        {"printcount": "Print Count", "ref": "ref", "fronttext": "Front Text", "frontflavour": "Lower Front Text", "mechanical": "Rear Text", "religious": "God", "relicon": "Religious Icon"}},
+        {'gid': 2085149563, 'name': 'complicated_resources', 'printrun': 'large', 'print':
+        {"printcount": "Print Count", "ref": "Reference Number", "fronttext": "Front Text", "frontflavour": "Lower Front Text", "mechanical": "Back Text"}},
+        
         ]
 
 # printcount,,ref,fronttext,frontflavour,roleplaying,mechanical,religious,relicon,printrun,,,,
